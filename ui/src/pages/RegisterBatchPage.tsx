@@ -34,7 +34,12 @@ const RegisterBatchPage = ({ className }: RegisterBatchPageProps) => {
     <div className={className}>
       <div className="container">
         <div className="header">
-          <img src={logo} alt="Green Friend Logo" className="logo" />
+          <img
+            src={logo}
+            alt="Green Friend Logo"
+            className="logo"
+            onClick={() => navigate("/dashboard")}
+          />{" "}
         </div>
         <h1>Cadastro de Espaço</h1>
         <Formik onSubmit={(val) => create(val)} initialValues={{}}>
@@ -76,6 +81,7 @@ export default styled(RegisterBatchPage)`
   .logo-container .logo,
   .header .logo {
     height: 100px;
+    cursor: pointer;
   }
 
   /* Informação do usuário */

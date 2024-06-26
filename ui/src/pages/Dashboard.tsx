@@ -20,7 +20,12 @@ const DashboardPage = ({ className }: DashboardPageProps) => {
     <div className={className}>
       <div className="header">
         <div className="logo-container">
-          <img src={logo} alt="Green Friend Logo" className="logo" />
+          <img
+            src={logo}
+            alt="Green Friend Logo"
+            className="logo"
+            onClick={() => navigate("/dashboard")}
+          />{" "}
         </div>
         <div className="user-info">
           <span>Bem-vindo, {localStorage.getItem("loggedIn")}</span>
@@ -76,6 +81,7 @@ export default styled(DashboardPage)`
 
   .logo-container .logo {
     height: 100px;
+    cursor: pointer;
   }
 
   .user-info {

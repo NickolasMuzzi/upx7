@@ -14,6 +14,14 @@ import MyBatches from "../pages/MyBatches";
 import VerifyDiscountPage from "../pages/VerifyDiscountPage";
 import AboutPage from "../pages/AboutPage";
 const Router = () => {
+  const verifyLogged = () => {
+    if (!localStorage.getItem("loggedIn")) {
+      return <Navigate to="/login" replace />;
+    } else {
+      return <Navigate to="/dashboard" replace />;
+    }
+  };
+
   const routes = createBrowserRouter([
     { path: "register", element: <RegisterPage /> },
     { path: "login", element: <LoginPage /> },
@@ -23,7 +31,7 @@ const Router = () => {
     { path: "meus-espacos", element: <MyBatches /> },
     { path: "verificar-desconto", element: <VerifyDiscountPage /> },
     { path: "sobre", element: <AboutPage /> },
-    { path: "*", element: <Navigate to="/dashboard" /> },
+    { path: "*", element: verifyLogged() },
   ]);
   return <RouterProvider router={routes} />;
 };
