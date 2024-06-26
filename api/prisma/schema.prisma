@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:postgres@localhost:5432/upx_green_friend?schema=public"
+}
+
+model Company {
+  id        String  @id @default(uuid())
+  username  String? @db.VarChar
+  email     String? @db.VarChar
+  cnpj      String? @db.VarChar
+  password  String?
+  cellphone String? @db.VarChar
+  role      Int?
+}
+
+model Batch {
+  id          String        @id @default(uuid())
+  adress      String?
+  area        Float?
+  description String?
+  ownerEmail  String?       @db.VarChar
+  images      BatchImages[]
+}
+
+model BatchImages {
+  id       String  @id @default(uuid())
+  img      String?
+  batch_id String?
+  Batch    Batch?  @relation(fields: [batch_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Users {
+  id        String  @id @default(uuid())
+  username  String? @db.VarChar
+  email     String? @db.VarChar
+  cpf       String? @db.VarChar
+  password  String?
+  cellphone String? @db.VarChar
+}
